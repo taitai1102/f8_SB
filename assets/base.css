@@ -1,0 +1,273 @@
+:root {
+    /*bộ chọn phần tử gốc */
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --primary-color: #ee4d2d;
+    --star-gold-color: #FFCE3E;
+    /*MÀU CHỦ ĐẠO- CHÍNH */
+    /* --primary-color: rgb(238, 77, 45); */
+    --border-color: #dbdbdb;
+    /* đặt biến ở height để thay đổi cũng thằng khác k bị ảnh hưởng */
+    --header-height: 120px;
+    --navbar-height: 34px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height));
+    --header-sort-bar-height: 46px;
+}
+
+/* màu icon gg */
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    /*tip đổi 62.5 = 10px , 1rem =10px*/
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    /*khi gặp man hình < 1200 thì có t/d giảm grid = width của màn hình*/
+    margin: 0 auto;
+    /* tự động căn giữa khối này */
+}
+
+.grid__full-width {
+    /*hi k muốn sd cái widt =1200px*/
+    width: 100%;
+}
+
+.grid__row {
+    /*cho nằm cùng 1 hàng ngang, vượt quá độ dài xuống hàng*/
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+/* test */
+.grid__column-2 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16.6667%;
+}
+
+.grid__column-2-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;   /*5 ông cột chiếm hết 100% của cái list-sp*/
+}
+
+.grid__column-10 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3334%;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes growth {
+    from {
+        transform: scale(var(--growth-from));
+        /*đặt biến khai báo var ở modal_body*/
+    }
+
+    to {
+        transform: scale(var(--growth-to));
+    }
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+
+.modal__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+    /*  set cứng chỉ để lúc fix thôi, sau này nó thay đổi theo content */
+    /* background-color: var(--white-color); */
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    /* border-radius: 5px; */
+    animation: growth linear 0.1s;
+    --growth-from: 0.7;
+    /*di chuyển từ kích thước 70% - tới nguyên vẹn 1 */
+    --growth-to: 1;
+}
+
+/* button style */
+
+.btn {
+    /*chung thì css btn- riêng thì ở dưới*/
+    min-width: 124px;
+    /* đặt min sau này chữ dài ra bị lỗi */
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    line-height: 1.4rem;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.btn--normal:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+.btn.btn--size-s {
+    height: 32px;
+    font-size: 1.2rem;
+    padding: 0 8px;
+}
+
+.btn.btn--primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.btn.btn--disabled {
+    cursor: default;
+    /* filter: brightness(85%); - giảm độ sáng đi/ vô hiệu hóa btn */
+    color: #949494;
+    background-color: #c3c3c3;
+}
+
+/* Slection */
+
+.select-input {
+    min-width: 200px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.select-input-bsd {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.select-input:hover .select-input__list {
+    display: block;
+}
+
+.select-input__label {
+    font-size: 1.4rem;
+}
+
+.select-input__icon {
+    font-size: 1.4rem;
+    color: rgb(131, 131, 131);
+    /* margin: 0 16px 0 8px; */
+    position: relative;
+    top: 1px;
+}
+
+.select-input__list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25px;
+    width: 100%;
+    background-color: var(--white-color);
+    padding: 4px 16px;
+    list-style: none; 
+    display: none;
+    z-index: 1;
+}
+
+.select-input__item {
+    font-size: 1.4rem;
+
+}
+
+.select-input__link {
+    display: block;
+    width: 100%;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 8px 0;
+}
+
+.select-input__link:hover {
+    color: var(--primary-color);
+}
+
+/* pagination */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination-item {
+    padding: 0 12px;
+}
+
+.pagination-item--active .pagination-item__link {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.pagination-item--active .pagination-item__link:hover {
+    background-color: #ed5c3f;
+}
+
+.pagination-item__link {
+    --height: 30px;
+    display: block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #939393;
+    min-width: 40px;
+    height: var(--height);
+    text-align: center;
+    line-height: var(--height);
+    border-radius: 2px;
+}
+
+

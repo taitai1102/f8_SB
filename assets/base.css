@@ -270,4 +270,10 @@ html {
     border-radius: 2px;
 }
 
+.r-desc__item-sub-heading span {
+    font-size: 12px;
+    color: #7a7a7a;
+}
+
+
 
